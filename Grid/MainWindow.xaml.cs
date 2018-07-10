@@ -30,9 +30,13 @@ namespace Grid
             this.DataContext = viewModel;
         }
 
-        private void OnUpdateButtonClick(object sender, RoutedEventArgs e)
+        private void OnResizeButtonClick(object sender, RoutedEventArgs e)
         {
-            viewModel.UpdateDataGrid(numberGrid);    
+            int oldRows = viewModel.Model.RowCount;
+            int oldColumns = viewModel.Model.ColumnCount;
+            int r = int.TryParse(rowCountTextBox.Text, out r) ? r : oldRows;
+            int c = int.TryParse(columnCountTextBox.Text, out c) ? c : oldColumns;
+            viewModel.ResizeDataGrid(numberGrid,r,c);    
         }
     }
 }

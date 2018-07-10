@@ -46,11 +46,10 @@ namespace Grid
                 grid.Columns.Add(new DataGridTextColumn { Header = s });
         }
 
-        public void UpdateDataGrid(DataGrid grid)
+        public void ResizeDataGrid(DataGrid grid, int rowsCount, int columnsCount)
         {
             // First resize the model
-            int DEBUG_VALUE = 1;
-            model.resize(model.RowCount, model.ColumnCount + DEBUG_VALUE);
+            model.resize(rowsCount, columnsCount);
             
             // Then write back data from view model to model
             for (int i=0;i<this.MyList.Count;i++)

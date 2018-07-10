@@ -11,12 +11,12 @@
             Orientation="Horizontal" 
             DockPanel.Dock="Top">
             <Label>Rows:</Label>
-            <TextBox>10</TextBox>
+            <TextBox Name="rowCountTextBox">10</TextBox>
             <Label>Columns:</Label>
-            <TextBox>10</TextBox>
+            <TextBox Name="columnCountTextBox">10</TextBox>
+            <Button Click="OnResizeButtonClick">Resize</Button>
             <Label>Default value:</Label>
             <TextBox>0</TextBox>
-            <Button Click="OnUpdateButtonClick">Update</Button>
         </StackPanel>
         <DataGrid Name="numberGrid" ItemsSource="{Binding MyList}"  
                   HeadersVisibility="None"
