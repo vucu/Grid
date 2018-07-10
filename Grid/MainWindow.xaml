@@ -23,6 +23,8 @@
             <Button Click="OnExportButtonClick">Export</Button>
         </StackPanel>
         <DataGrid Name="numberGrid" ItemsSource="{Binding MyList}"  
+                  SelectionMode="Extended"
+                  SelectionUnit="CellOrRowHeader"
                   HeadersVisibility="None"
                   AutoGenerateColumns="False"
                   CanUserAddRows="False"
