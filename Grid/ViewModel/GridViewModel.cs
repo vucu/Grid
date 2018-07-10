@@ -48,19 +48,54 @@ namespace Grid
 
         public void UpdateDataGrid(DataGrid grid)
         {
-            UpdateColumns(grid.Columns);
+            // First resize the model
+            int DEBUG_VALUE = 1;
+            model.resize(model.RowCount, model.ColumnCount + DEBUG_VALUE);
+            
+            // Then write back data from view model to model
+            for (int i=0;i<this.MyList.Count;i++)
+            {
+                DataItem dataItem = this.MyList[i];
+                for (int j=0;j<dataItem.DataList.Count;j++)
+                {
+                    int value = dataItem.DataList[j].MyValue;
+                    this.model[i, j] = value;
+                }
+            }
 
-            var m1 = new DataItem() { Name = "test1" };
-            m1.DataList.Add(new DataListItem() { MyValue = 10 });
-            m1.DataList.Add(new DataListItem() { MyValue = 20 });
+            // First remove all columns
+            while (grid.Columns.Count > 0)
+            {
+                grid.Columns.RemoveAt(0);
+            }
 
-            var m2 = new DataItem() { Name = "test2" };
-            m2.DataList.Add(new DataListItem() { MyValue = 100 });
-            m2.DataList.Add(new DataListItem() { MyValue = 200 });
+            // Then add the number of columns based on the model
+            for (int i = 0; i < model.ColumnCount; i++)
+            {
+                DataGridTextColumn col = new DataGridTextColumn();
+                // col.Header = "" + i;
+                Binding binding = new Binding(string.Format("DataList[{0}].MyValue", i));
+                binding.Mode = BindingMode.TwoWay;
+                col.Binding = binding;
+                grid.Columns.Add(col);
+            }
 
-            this.MyList.Add(m1);
-            this.MyList.Add(m2);
-            Console.WriteLine(this.MyList.Count);
+            // Remove all items in the view model
+            while (this.MyList.Count>0)
+            {
+                this.MyList.RemoveAt(0);
+            }
+
+            // Then add the items to the view model based on the model
+            for (int i=0;i<model.RowCount;i++)
+            {
+                DataItem dataItem = new DataItem();
+                for (int j=0;j<model.ColumnCount;j++)
+                {
+                    dataItem.DataList.Add(new DataListItem() { MyValue = this.model[i, j] });
+                }
+                this.MyList.Add(dataItem);
+            }
         }
 
         private void UpdateColumns(ObservableCollection<DataGridColumn> columns)

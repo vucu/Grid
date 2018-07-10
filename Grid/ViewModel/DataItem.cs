@@ -9,7 +9,6 @@ namespace Grid
 {
     class DataItem 
     {
-        public string Name { get; set; }
         public ObservableCollection<DataListItem> DataList { get; set; }
 
         public DataItem()

@@ -32,9 +32,7 @@ namespace Grid
 
         private void OnUpdateButtonClick(object sender, RoutedEventArgs e)
         {
-            Console.WriteLine("OnUpdateButtonClick");
-            viewModel.UpdateDataGrid(numberGrid);
-            
+            viewModel.UpdateDataGrid(numberGrid);    
         }
     }
 }

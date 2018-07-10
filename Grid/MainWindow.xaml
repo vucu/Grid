@@ -19,7 +19,11 @@
             <Button Click="OnUpdateButtonClick">Update</Button>
         </StackPanel>
         <DataGrid Name="numberGrid" ItemsSource="{Binding MyList}"  
-                  AutoGenerateColumns="False">
+                  HeadersVisibility="None"
+                  AutoGenerateColumns="False"
+                  CanUserAddRows="False"
+                  CanUserDeleteRows="False"
+                  CanUserSortColumns="False">
         </DataGrid>
     </DockPanel>
 </Window>
