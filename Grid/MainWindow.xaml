@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Grid"
         mc:Ignorable="d"
-        Title="MainWindow" Height="350" Width="525">
+        Title="MainWindow" Height="450" Width="720">
     <DockPanel>
         <StackPanel 
             Orientation="Horizontal" 
@@ -17,6 +17,10 @@
             <Button Click="OnResizeButtonClick">Resize</Button>
             <Label>Default value:</Label>
             <TextBox>0</TextBox>
+            <Button>Clear</Button>
+            <Label>File name:</Label>
+            <TextBox Name="fileNameTextBox">output.txt</TextBox>
+            <Button Click="OnExportButtonClick">Export</Button>
         </StackPanel>
         <DataGrid Name="numberGrid" ItemsSource="{Binding MyList}"  
                   HeadersVisibility="None"

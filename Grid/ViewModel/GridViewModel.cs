@@ -58,6 +58,25 @@ namespace Grid
                 grid.Columns.Add(col);
             }
         }
+
+        public void ExportToFile(string filename)
+        {
+            WriteViewModelToModel();
+
+            StringBuilder sb = new StringBuilder();
+            for (int i=0;i<this.Model.RowCount;i++)
+            {
+                sb.Append(model[i, 1]);
+                for (int j=1;j<this.Model.ColumnCount;j++)
+                {
+                    sb.Append(",");
+                    sb.Append(model[i, j]);
+                }
+                sb.Append("\r\n");
+            }
+
+            System.IO.File.WriteAllText(filename, sb.ToString());
+        }
         
         private void WriteViewModelToModel()
         {
