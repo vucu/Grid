@@ -16,10 +16,9 @@
             <TextBox>10</TextBox>
             <Label>Default value:</Label>
             <TextBox>0</TextBox>
-            <Button>Update</Button>
+            <Button Click="OnUpdateButtonClick">Update</Button>
         </StackPanel>
-        <DataGrid Name="numberGrid"
-          AutoGenerateColumns="False">
+        <DataGrid Name="numberGrid" AutoGenerateColumns="False">
         </DataGrid>
     </DockPanel>
 </Window>

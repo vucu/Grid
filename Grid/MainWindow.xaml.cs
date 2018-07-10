@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -20,10 +21,20 @@ namespace Grid
     /// </summary>
     public partial class MainWindow : Window
     {
+        GridViewModel viewModel;
+
         public MainWindow()
         {
             InitializeComponent();
-            this.DataContext = new GridViewModel();
+            viewModel = new GridViewModel();
+            this.DataContext = viewModel;
+        }
+
+        private void OnUpdateButtonClick(object sender, RoutedEventArgs e)
+        {
+            Console.WriteLine("OnUpdateButtonClick");
+            viewModel.UpdateColumns(numberGrid.Columns);
+            
         }
     }
 }
