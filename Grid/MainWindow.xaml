@@ -6,7 +6,17 @@
         xmlns:local="clr-namespace:Grid"
         mc:Ignorable="d"
         Title="MainWindow" Height="350" Width="525">
-    <Grid>
-        
-    </Grid>
+    <DockPanel>
+        <StackPanel 
+            Orientation="Horizontal" 
+            DockPanel.Dock="Top">
+            <Label>Rows:</Label>
+            <TextBox> </TextBox>
+            <Label>Columns:</Label>
+            <TextBox> </TextBox>
+        </StackPanel>
+        <DataGrid Name="numberGrid"
+          AutoGenerateColumns="False">
+        </DataGrid>
+    </DockPanel>
 </Window>

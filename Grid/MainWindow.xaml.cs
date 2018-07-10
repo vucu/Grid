@@ -23,6 +23,7 @@ namespace Grid
         public MainWindow()
         {
             InitializeComponent();
+            this.DataContext = new GridViewModel();
         }
     }
 }
