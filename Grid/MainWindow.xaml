@@ -16,7 +16,7 @@
             <TextBox Name="columnCountTextBox">10</TextBox>
             <Button Click="OnResizeButtonClick">Resize</Button>
             <Label>Default value:</Label>
-            <TextBox>0</TextBox>
+            <TextBox Text="{Binding Model.DefaultValue}"></TextBox>
             <Button>Clear</Button>
             <Label>File name:</Label>
             <TextBox Name="fileNameTextBox">output.txt</TextBox>

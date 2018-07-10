@@ -59,6 +59,21 @@ namespace Grid
             }
         }
 
+        public void Clear()
+        {
+            // Clear the model with default values
+            for (int i=0;i<model.RowCount;i++)
+            {
+                for (int j=0;j<model.ColumnCount;j++)
+                {
+                    model[i, j] = model.DefaultValue;
+                }
+            }
+
+            // Update the view model
+            LoadModelToViewModel();
+        }
+
         public void ExportToFile(string filename)
         {
             WriteViewModelToModel();

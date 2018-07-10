@@ -41,6 +41,11 @@ namespace Grid
             viewModel.ResizeDataGrid(numberGrid,r,c);    
         }
 
+        private void OnClearButtonClick(object sender, RoutedEventArgs e)
+        {
+            viewModel.Clear();
+        }
+             
         private void OnExportButtonClick(object sender, RoutedEventArgs e)
         {
             viewModel.ExportToFile(fileNameTextBox.Text);

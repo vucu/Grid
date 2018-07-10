@@ -74,7 +74,7 @@ namespace Grid
             {
                 return this.defaultValue;
             }
-            private set {
+            set {
                 this.defaultValue = value;
             }
         }
