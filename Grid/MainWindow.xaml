@@ -18,7 +18,8 @@
             <TextBox>0</TextBox>
             <Button Click="OnUpdateButtonClick">Update</Button>
         </StackPanel>
-        <DataGrid Name="numberGrid" AutoGenerateColumns="False">
+        <DataGrid Name="numberGrid" ItemsSource="{Binding MyList}"  
+                  AutoGenerateColumns="False">
         </DataGrid>
     </DockPanel>
 </Window>

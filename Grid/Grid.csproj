@@ -56,7 +56,8 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Model\Model.cs" />
-    <Compile Include="ViewModel\DataGridColumnsBehavior.cs" />
+    <Compile Include="ViewModel\DataItem.cs" />
+    <Compile Include="ViewModel\DataListItem.cs" />
     <Compile Include="ViewModel\NotifyPropertyChangedImpl.cs" />
     <Compile Include="ViewModel\GridViewModel.cs" />
     <Page Include="MainWindow.xaml">

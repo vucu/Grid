@@ -11,7 +11,7 @@ namespace Grid
     {
         public event PropertyChangedEventHandler PropertyChanged;
 
-        public void Notify(string propertyName)
+        public void OnPropertyChanged(string propertyName)
         {
             if (this.PropertyChanged != null)
             {

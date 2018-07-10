@@ -18,6 +18,7 @@ namespace Grid
         {
             model = new Model(3,3);
             DataTable = new DataTable();
+            MyList = new ObservableCollection<DataItem>();
         }
 
         public Model Model
@@ -34,6 +35,8 @@ namespace Grid
             private set;
         }
 
+        public ObservableCollection<DataItem> MyList { get; private set; }
+
         public void BindColumn(DataGrid grid)
         {
             // ExpandoObject implements IDictionary<string,object> 
@@ -47,7 +50,16 @@ namespace Grid
         {
             UpdateColumns(grid.Columns);
 
-            
+            var m1 = new DataItem() { Name = "test1" };
+            m1.DataList.Add(new DataListItem() { MyValue = 10 });
+            m1.DataList.Add(new DataListItem() { MyValue = 20 });
+
+            var m2 = new DataItem() { Name = "test2" };
+            m2.DataList.Add(new DataListItem() { MyValue = 100 });
+            m2.DataList.Add(new DataListItem() { MyValue = 200 });
+
+            this.MyList.Add(m1);
+            this.MyList.Add(m2);
         }
 
         public void UpdateColumns(ObservableCollection<DataGridColumn> columns)
@@ -61,11 +73,17 @@ namespace Grid
             // Then add the number of columns based on the model
             for (int i=0;i<model.ColumnCount;i++)
             {
-                columns.Add(new DataGridTextColumn
-                {
-                    Binding = new Binding("Custom[" + i + "]"),
-                    Header = ""+i
-                });
+                DataGridTextColumn col = new DataGridTextColumn();
+                col.Header = ""+i;
+                Binding binding = new Binding(string.Format("MyList[{0}].MyValue", i));
+                binding.Mode = BindingMode.TwoWay;
+                col.Binding = binding;
+                columns.Add(col);
+            }
+
+            foreach (DataGridColumn column in columns)
+            {
+                Console.WriteLine((column as DataGridTextColumn).Binding);
             }
 
             model.resize(model.RowCount, model.ColumnCount+1);
