@@ -16,7 +16,7 @@ namespace Grid
 
         public GridViewModel()
         {
-            model = new Model(3,3);
+            model = new Model(2,2);
             DataTable = new DataTable();
             MyList = new ObservableCollection<DataItem>();
         }
@@ -60,9 +60,10 @@ namespace Grid
 
             this.MyList.Add(m1);
             this.MyList.Add(m2);
+            Console.WriteLine(this.MyList.Count);
         }
 
-        public void UpdateColumns(ObservableCollection<DataGridColumn> columns)
+        private void UpdateColumns(ObservableCollection<DataGridColumn> columns)
         {
             // First remove all columns
             while (columns.Count>0)
@@ -75,7 +76,7 @@ namespace Grid
             {
                 DataGridTextColumn col = new DataGridTextColumn();
                 col.Header = ""+i;
-                Binding binding = new Binding(string.Format("MyList[{0}].MyValue", i));
+                Binding binding = new Binding(string.Format("DataList[{0}].MyValue", i));
                 binding.Mode = BindingMode.TwoWay;
                 col.Binding = binding;
                 columns.Add(col);

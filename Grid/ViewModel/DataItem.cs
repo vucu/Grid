@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Grid
 {
-    class DataItem
+    class DataItem 
     {
         public string Name { get; set; }
         public ObservableCollection<DataListItem> DataList { get; set; }
