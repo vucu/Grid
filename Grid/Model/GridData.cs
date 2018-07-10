@@ -6,12 +6,12 @@ using System.Threading.Tasks;
 
 namespace Grid
 {
-    class Model
+    class GridData
     {
         private int rowCount;
         private int columnCount;
 
-        public Model()
+        public GridData()
         {
             rowCount = 1;
             columnCount = 1;

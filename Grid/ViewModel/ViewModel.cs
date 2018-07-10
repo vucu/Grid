@@ -8,11 +8,11 @@ namespace Grid
 {
     class ViewModel
     {
-        private Model model;
+        private GridData model;
 
         public ViewModel()
         {
-            model = new Model();
+            model = new GridData();
         }
     }
 }
