@@ -28,6 +28,8 @@ namespace Grid
             InitializeComponent();
             viewModel = new GridViewModel();
             this.DataContext = viewModel;
+
+            this.OnResizeButtonClick(null, null);
         }
 
         private void OnResizeButtonClick(object sender, RoutedEventArgs e)

@@ -52,10 +52,10 @@ namespace Grid
             model.resize(rowsCount, columnsCount);
             
             // Then write back data from view model to model
-            for (int i=0;i<this.MyList.Count;i++)
+            for (int i=0;i<this.MyList.Count && i<model.RowCount;i++)
             {
                 DataItem dataItem = this.MyList[i];
-                for (int j=0;j<dataItem.DataList.Count;j++)
+                for (int j=0;j<dataItem.DataList.Count && j<model.ColumnCount;j++)
                 {
                     int value = dataItem.DataList[j].MyValue;
                     this.model[i, j] = value;
