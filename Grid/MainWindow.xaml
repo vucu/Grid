@@ -11,9 +11,12 @@
             Orientation="Horizontal" 
             DockPanel.Dock="Top">
             <Label>Rows:</Label>
-            <TextBox> </TextBox>
+            <TextBox>10</TextBox>
             <Label>Columns:</Label>
-            <TextBox> </TextBox>
+            <TextBox>10</TextBox>
+            <Label>Default value:</Label>
+            <TextBox>0</TextBox>
+            <Button>Update</Button>
         </StackPanel>
         <DataGrid Name="numberGrid"
           AutoGenerateColumns="False">
