@@ -17,7 +17,6 @@ namespace Grid
         public GridViewModel()
         {
             model = new Model(2,2);
-            DataTable = new DataTable();
             MyList = new ObservableCollection<DataItem>();
         }
 
@@ -29,39 +28,19 @@ namespace Grid
             }
         }
 
-        public DataTable DataTable
-        {
-            get;
-            private set;
-        }
-
         public ObservableCollection<DataItem> MyList { get; private set; }
-
-        public void BindColumn(DataGrid grid)
-        {
-            // ExpandoObject implements IDictionary<string,object> 
-            IEnumerable<IDictionary<string, object>> rows = grid.ItemsSource.OfType<IDictionary<string, object>>();
-            IEnumerable<string> columns = rows.SelectMany(d => d.Keys).Distinct(StringComparer.OrdinalIgnoreCase);
-            foreach (string s in columns)
-                grid.Columns.Add(new DataGridTextColumn { Header = s });
-        }
+        
 
         public void ResizeDataGrid(DataGrid grid, int rowsCount, int columnsCount)
         {
             // First resize the model
             model.resize(rowsCount, columnsCount);
-            
-            // Then write back data from view model to model
-            for (int i=0;i<this.MyList.Count && i<model.RowCount;i++)
-            {
-                DataItem dataItem = this.MyList[i];
-                for (int j=0;j<dataItem.DataList.Count && j<model.ColumnCount;j++)
-                {
-                    int value = dataItem.DataList[j].MyValue;
-                    this.model[i, j] = value;
-                }
-            }
 
+            // Update the view model to match model size
+            this.WriteViewModelToModel();
+            this.LoadModelToViewModel();
+
+            // Update the columns to match model size
             // First remove all columns
             while (grid.Columns.Count > 0)
             {
@@ -78,52 +57,39 @@ namespace Grid
                 col.Binding = binding;
                 grid.Columns.Add(col);
             }
+        }
+        
+        private void WriteViewModelToModel()
+        {
+            for (int i = 0; i < this.MyList.Count && i < model.RowCount; i++)
+            {
+                DataItem dataItem = this.MyList[i];
+                for (int j = 0; j < dataItem.DataList.Count && j < model.ColumnCount; j++)
+                {
+                    int value = dataItem.DataList[j].MyValue;
+                    this.model[i, j] = value;
+                }
+            }
+        }
 
-            // Remove all items in the view model
-            while (this.MyList.Count>0)
+        private void LoadModelToViewModel()
+        {
+            // Remove all items in the current view model
+            while (this.MyList.Count > 0)
             {
                 this.MyList.RemoveAt(0);
             }
 
             // Then add the items to the view model based on the model
-            for (int i=0;i<model.RowCount;i++)
+            for (int i = 0; i < model.RowCount; i++)
             {
                 DataItem dataItem = new DataItem();
-                for (int j=0;j<model.ColumnCount;j++)
+                for (int j = 0; j < model.ColumnCount; j++)
                 {
                     dataItem.DataList.Add(new DataListItem() { MyValue = this.model[i, j] });
                 }
                 this.MyList.Add(dataItem);
             }
         }
-
-        private void UpdateColumns(ObservableCollection<DataGridColumn> columns)
-        {
-            // First remove all columns
-            while (columns.Count>0)
-            {
-                columns.RemoveAt(0);
-            }
-
-            // Then add the number of columns based on the model
-            for (int i=0;i<model.ColumnCount;i++)
-            {
-                DataGridTextColumn col = new DataGridTextColumn();
-                col.Header = ""+i;
-                Binding binding = new Binding(string.Format("DataList[{0}].MyValue", i));
-                binding.Mode = BindingMode.TwoWay;
-                col.Binding = binding;
-                columns.Add(col);
-            }
-
-            foreach (DataGridColumn column in columns)
-            {
-                Console.WriteLine((column as DataGridTextColumn).Binding);
-            }
-
-            model.resize(model.RowCount, model.ColumnCount+1);
-        }
-
-
     }
 }
