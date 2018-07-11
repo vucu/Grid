@@ -3,25 +3,42 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
         xmlns:local="clr-namespace:Grid"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="720">
+        Title="Grid" Height="450" Width="720">
     <DockPanel>
-        <StackPanel 
-            Orientation="Horizontal" 
-            DockPanel.Dock="Top">
-            <Label>Rows:</Label>
-            <TextBox Name="rowCountTextBox">10</TextBox>
-            <Label>Columns:</Label>
-            <TextBox Name="columnCountTextBox">10</TextBox>
-            <Button Click="OnResizeButtonClick">Resize</Button>
-            <Label>Default value:</Label>
-            <TextBox Text="{Binding DefaultCellValue}"></TextBox>
-            <Button>Clear</Button>
-            <Label>File name:</Label>
-            <TextBox Name="fileNameTextBox">output.txt</TextBox>
-            <Button Click="OnExportButtonClick">Export</Button>
-        </StackPanel>
+        <Grid DockPanel.Dock="Top">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <Label Grid.Column="0">Rows:</Label>
+            <TextBox Grid.Column="1" Name="rowCountTextBox">10</TextBox>
+            <Label Grid.Column="2">Columns:</Label>
+            <TextBox Grid.Column="3" Name="columnCountTextBox">10</TextBox>
+            <Label Grid.Column="4">Default value:</Label>
+            <TextBox Grid.Column="5" Text="{Binding DefaultCellValue}"></TextBox>
+            <Button Grid.Column="6" Click="OnResizeButtonClick">Resize</Button>
+            <Label Grid.Column="7">File name:</Label>
+            <TextBox Grid.Column="8" Name="fileNameTextBox">output.txt</TextBox>
+            <Button Grid.Column="9" Click="OnExportButtonClick">Export</Button>
+            <Label Grid.Column="10">Color:</Label>
+            <xctk:ColorPicker Grid.Column="11" Name="cellColorPicker" SelectedColorChanged="CellColorPickerChanged"></xctk:ColorPicker>
+        </Grid>
         <DataGrid Name="numberGrid" ItemsSource="{Binding MyList}"  
                   SelectionMode="Extended"
                   SelectionUnit="Cell"

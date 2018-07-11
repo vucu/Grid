@@ -71,5 +71,10 @@ namespace Grid
 ;                }
             }
         }
+
+        private void CellColorPickerChanged(object sender, RoutedEventArgs e)
+        {
+            // 
+        }
     }
 }
