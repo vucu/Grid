@@ -20,13 +20,13 @@ namespace Grid
             MyList = new ObservableCollection<DataItem>();
         }
 
-        public int DefaultCellValue {
+        public string DefaultCellValue {
             get {
-                return gridModel.DefaultValue;
+                return gridModel.DefaultValue.Content;
             }
             set
             {
-                gridModel.DefaultValue = value;
+                gridModel.DefaultValue.Content = value;
             }
         }
 
@@ -70,45 +70,16 @@ namespace Grid
             {
                 DataGridTextColumn col = new DataGridTextColumn();
                 // col.Header = "" + i;
-                Binding binding = new Binding(string.Format("DataList[{0}].MyValue", i));
+                Binding binding = new Binding(string.Format("DataList[{0}].Content", i));
                 binding.Mode = BindingMode.TwoWay;
                 col.Binding = binding;
                 grid.Columns.Add(col);
             }
         }
-
-        public void Clear()
-        {
-            // Clear the model with default values
-            for (int i=0;i<gridModel.RowCount;i++)
-            {
-                for (int j=0;j<gridModel.ColumnCount;j++)
-                {
-                    gridModel[i, j] = gridModel.DefaultValue;
-                }
-            }
-
-            // Update the view model
-            LoadModelToViewModel();
-        }
-
+        
         public void ExportToFile(string filename)
         {
-            WriteViewModelToModel();
-
-            StringBuilder sb = new StringBuilder();
-            for (int i=0;i<this.gridModel.RowCount;i++)
-            {
-                sb.Append(gridModel[i, 1]);
-                for (int j=1;j<this.gridModel.ColumnCount;j++)
-                {
-                    sb.Append(",");
-                    sb.Append(gridModel[i, j]);
-                }
-                sb.Append("\r\n");
-            }
-
-            System.IO.File.WriteAllText(filename, sb.ToString());
+            this.gridModel.ExportToFile(filename);
         }
 
         public void LoadFromFile(string filename)
@@ -116,7 +87,7 @@ namespace Grid
 
         }
 
-        public void Put(int row, int column, int newValue)
+        public void Put(int row, int column, string newValue)
         {
             for (int i = 0; i < this.MyList.Count; i++)
             {
@@ -127,7 +98,7 @@ namespace Grid
                     {
                         if (j==column)
                         {
-                            dataItem.DataList[j].MyValue = newValue;
+                            dataItem.DataList[j].Content = newValue;
                             break;
                         }
                     }
@@ -143,7 +114,7 @@ namespace Grid
                 DataItem dataItem = this.MyList[i];
                 for (int j = 0; j < dataItem.DataList.Count && j < gridModel.ColumnCount; j++)
                 {
-                    int value = dataItem.DataList[j].MyValue;
+                    var value = dataItem.DataList[j];
                     this.gridModel[i, j] = value;
                 }
             }
@@ -163,7 +134,7 @@ namespace Grid
                 DataItem dataItem = new DataItem();
                 for (int j = 0; j < gridModel.ColumnCount; j++)
                 {
-                    dataItem.DataList.Add(new DataListItem() { MyValue = this.gridModel[i, j] });
+                    dataItem.DataList.Add(this.gridModel[i, j]);
                 }
                 this.MyList.Add(dataItem);
             }

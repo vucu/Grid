@@ -9,11 +9,11 @@ namespace Grid
 {
     class DataItem 
     {
-        public ObservableCollection<DataListItem> DataList { get; set; }
+        public ObservableCollection<AlphaNumeric> DataList { get; set; }
 
         public DataItem()
         {
-            this.DataList = new ObservableCollection<DataListItem>();
+            this.DataList = new ObservableCollection<AlphaNumeric>();
         }
     }
 }

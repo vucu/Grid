@@ -53,8 +53,7 @@ namespace Grid
             if (e.EditAction == DataGridEditAction.Commit)
             {
                 var tb = e.EditingElement as TextBox;
-                int value;
-                if (!int.TryParse(tb.Text, out value)) return;
+                string value = tb.Text;
 
                 IList<DataGridCellInfo> selectedCells = numberGrid.SelectedCells;
 

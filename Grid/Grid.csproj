@@ -108,10 +108,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Model\AlphaNumeric.cs" />
     <Compile Include="Model\ColorModel.cs" />
-    <Compile Include="Model\Model.cs" />
+    <Compile Include="Model\GridModel.cs" />
     <Compile Include="ViewModel\DataItem.cs" />
-    <Compile Include="ViewModel\DataListItem.cs" />
     <Compile Include="ViewModel\NotifyPropertyChangedImpl.cs" />
     <Compile Include="ViewModel\GridViewModel.cs" />
     <Page Include="MainWindow.xaml">
