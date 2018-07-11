@@ -70,5 +70,54 @@ namespace Grid
         {
             // 
         }
+
+        private void OnSelectionChanged(object sender, SelectedCellsChangedEventArgs e)
+        {
+            IList<DataGridCellInfo> selectedCells = numberGrid.SelectedCells;
+
+            
+            // The selected value will be the most common value among selected cells
+            if (selectedCells.Count>0)
+            {
+                // Count each type of value
+                Dictionary<string, int> counts = new Dictionary<string, int>();
+                foreach (DataGridCellInfo cellInfo in selectedCells)
+                {
+                    int row = numberGrid.Items.IndexOf(cellInfo.Item);
+                    int column = cellInfo.Column.DisplayIndex;
+
+                    string s = viewModel.Get(row, column);
+                    if (counts.ContainsKey(s))
+                    {
+                        counts[s] += 1;
+                    }
+                    else
+                    {
+                        counts[s] = 1;
+                    }
+                }
+
+                // Find the most common value
+                int highestCount = 0;
+                string mostCommonValue = null;
+                foreach (DataGridCellInfo cellInfo in selectedCells)
+                {
+                    int row = numberGrid.Items.IndexOf(cellInfo.Item);
+                    int column = cellInfo.Column.DisplayIndex;
+
+                    string s = viewModel.Get(row, column);
+                    int count = counts[s];
+                    if (count>highestCount)
+                    {
+                        highestCount = count;
+                        mostCommonValue = s;
+                    }
+                }
+
+                // Update the most common value in the view model
+                viewModel.SetSelectedValueString(mostCommonValue);
+            }
+            
+        }
     }
 }

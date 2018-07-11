@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Data;
@@ -7,16 +8,19 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Controls;
 using System.Windows.Data;
+using System.Windows.Media;
 
 namespace Grid
 {
-    class GridViewModel
+    class GridViewModel : NotifyPropertyChangedImpl
     {
         private GridModel gridModel;
+        private ColorModel colorModel;
 
         public GridViewModel()
         {
             gridModel = new GridModel(2,2);
+            colorModel = new ColorModel();
             MyList = new ObservableCollection<DataItem>();
         }
 
@@ -45,6 +49,42 @@ namespace Grid
                 return gridModel.ColumnCount;
             }
         }
+
+        
+        private string selectedValueString = null;
+        private Color currentColor;
+        public void SetSelectedValueString(string value)
+        {
+            Console.WriteLine("selected value: " + value);
+            selectedValueString = value;
+            Color c;
+            Color white = Color.FromRgb(255, 255, 255);
+
+            if (!colorModel.Colors.TryGetValue(selectedValueString, out c)) currentColor = white;
+            else currentColor = c;
+
+            // Notify change for CurrentColor
+            OnPropertyChanged("CurrentColor");
+        }
+
+        public Color CurrentColor
+        {
+            get
+            {
+                return currentColor;
+            }
+            set
+            {
+                currentColor = value;
+                if (selectedValueString != null)
+                {
+                    colorModel.Colors[selectedValueString] = value;
+                }
+                OnPropertyChanged("CurrentColor");
+            }
+        }
+        
+
 
         public ObservableCollection<DataItem> MyList { get; private set; }
         
@@ -105,6 +145,26 @@ namespace Grid
                     break;
                 }
             }
+        }
+
+        public string Get(int row, int column)
+        {
+            for (int i = 0; i < this.MyList.Count; i++)
+            {
+                if (i == row)
+                {
+                    DataItem dataItem = this.MyList[i];
+                    for (int j = 0; j < dataItem.DataList.Count; j++)
+                    {
+                        if (j == column)
+                        {
+                            return dataItem.DataList[j].Content;
+                        }
+                    }
+                }
+            }
+
+            return null;
         }
         
         private void WriteViewModelToModel()

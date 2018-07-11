@@ -6,7 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Media;
 
-namespace Grid.Model
+namespace Grid
 {
     class ColorModel
     {
@@ -14,10 +14,10 @@ namespace Grid.Model
 
         public ColorModel()
         {
-            Colors = new Dictionary<AlphaNumeric, Color>();
+            Colors = new Dictionary<string, Color>();
         }
 
-        public Dictionary<AlphaNumeric, Color> Colors { get; private set; }
+        public Dictionary<string, Color> Colors { get; private set; }
 
         public void DeleteAll()
         {
@@ -65,12 +65,14 @@ namespace Grid.Model
                 {
                     var line = reader.ReadLine();
                     var values = line.Split(',');
-                    AlphaNumeric a = new AlphaNumeric(values[0]);
+                    var key = values[0];
                     Color c = new Color();
                     c.R = byte.Parse(values[1]);
                     c.G = byte.Parse(values[2]);
                     c.B = byte.Parse(values[3]);
                     c.A = byte.Parse(values[4]);
+
+                    Colors.Add(key, c);
                 }
             }
         }
