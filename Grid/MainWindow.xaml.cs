@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
@@ -34,8 +35,8 @@ namespace Grid
 
         private void OnResizeButtonClick(object sender, RoutedEventArgs e)
         {
-            int oldRows = viewModel.Model.RowCount;
-            int oldColumns = viewModel.Model.ColumnCount;
+            int oldRows = viewModel.RowCount;
+            int oldColumns = viewModel.ColumnCount;
             int r = int.TryParse(rowCountTextBox.Text, out r) ? r : oldRows;
             int c = int.TryParse(columnCountTextBox.Text, out c) ? c : oldColumns;
             viewModel.ResizeDataGrid(numberGrid,r,c);    
@@ -49,6 +50,26 @@ namespace Grid
         private void OnExportButtonClick(object sender, RoutedEventArgs e)
         {
             viewModel.ExportToFile(fileNameTextBox.Text);
+        }
+        
+        // Change all selected cells
+        public void CellEditingEnding(object sender, DataGridCellEditEndingEventArgs e)
+        {
+            if (e.EditAction == DataGridEditAction.Commit)
+            {
+                var tb = e.EditingElement as TextBox;
+                int value;
+                if (!int.TryParse(tb.Text, out value)) return;
+
+                IList<DataGridCellInfo> selectedCells = numberGrid.SelectedCells;
+
+                foreach (DataGridCellInfo cellInfo in selectedCells)
+                {
+                    int row = numberGrid.Items.IndexOf(cellInfo.Item);
+                    int column = cellInfo.Column.DisplayIndex;
+                    viewModel.Put(row, column, value);
+;                }
+            }
         }
     }
 }

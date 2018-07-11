@@ -16,7 +16,7 @@
             <TextBox Name="columnCountTextBox">10</TextBox>
             <Button Click="OnResizeButtonClick">Resize</Button>
             <Label>Default value:</Label>
-            <TextBox Text="{Binding Model.DefaultValue}"></TextBox>
+            <TextBox Text="{Binding DefaultCellValue}"></TextBox>
             <Button>Clear</Button>
             <Label>File name:</Label>
             <TextBox Name="fileNameTextBox">output.txt</TextBox>
@@ -24,7 +24,8 @@
         </StackPanel>
         <DataGrid Name="numberGrid" ItemsSource="{Binding MyList}"  
                   SelectionMode="Extended"
-                  SelectionUnit="CellOrRowHeader"
+                  SelectionUnit="Cell"
+                  CellEditEnding="CellEditingEnding"
                   HeadersVisibility="None"
                   AutoGenerateColumns="False"
                   CanUserAddRows="False"

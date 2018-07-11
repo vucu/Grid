@@ -20,11 +20,29 @@ namespace Grid
             MyList = new ObservableCollection<DataItem>();
         }
 
-        public Model Model
+        public int DefaultCellValue {
+            get {
+                return model.DefaultValue;
+            }
+            set
+            {
+                model.DefaultValue = value;
+            }
+        }
+
+        public int RowCount
         {
             get
             {
-                return model;
+                return model.RowCount;
+            }
+        }
+
+        public int ColumnCount
+        {
+            get
+            {
+                return model.ColumnCount;
             }
         }
 
@@ -79,10 +97,10 @@ namespace Grid
             WriteViewModelToModel();
 
             StringBuilder sb = new StringBuilder();
-            for (int i=0;i<this.Model.RowCount;i++)
+            for (int i=0;i<this.model.RowCount;i++)
             {
                 sb.Append(model[i, 1]);
-                for (int j=1;j<this.Model.ColumnCount;j++)
+                for (int j=1;j<this.model.ColumnCount;j++)
                 {
                     sb.Append(",");
                     sb.Append(model[i, j]);
@@ -91,6 +109,26 @@ namespace Grid
             }
 
             System.IO.File.WriteAllText(filename, sb.ToString());
+        }
+
+        public void Put(int row, int column, int newValue)
+        {
+            for (int i = 0; i < this.MyList.Count; i++)
+            {
+                if (i==row)
+                {
+                    DataItem dataItem = this.MyList[i];
+                    for (int j = 0; j < dataItem.DataList.Count; j++)
+                    {
+                        if (j==column)
+                        {
+                            dataItem.DataList[j].MyValue = newValue;
+                            break;
+                        }
+                    }
+                    break;
+                }
+            }
         }
         
         private void WriteViewModelToModel()
