@@ -7,14 +7,14 @@ using System.Windows.Data;
 
 namespace Grid
 {
-    class Model
+    class GridModel
     {
         int[,] data;
         private int rowCount;
         private int columnCount;
         private int defaultValue;
 
-        public Model(int rowCount, int columnCount)
+        public GridModel(int rowCount, int columnCount)
         {
             this.rowCount = rowCount;
             this.columnCount = columnCount;

@@ -41,11 +41,6 @@ namespace Grid
             int c = int.TryParse(columnCountTextBox.Text, out c) ? c : oldColumns;
             viewModel.ResizeDataGrid(numberGrid,r,c);    
         }
-
-        private void OnClearButtonClick(object sender, RoutedEventArgs e)
-        {
-            viewModel.Clear();
-        }
              
         private void OnExportButtonClick(object sender, RoutedEventArgs e)
         {

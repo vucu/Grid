@@ -6,7 +6,7 @@
         xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
         xmlns:local="clr-namespace:Grid"
         mc:Ignorable="d"
-        Title="Grid" Height="450" Width="720">
+        Title="Grid" Height="500" Width="800">
     <DockPanel>
         <Grid DockPanel.Dock="Top">
             <Grid.RowDefinitions>
@@ -22,8 +22,10 @@
                 <ColumnDefinition Width="*" />
                 <ColumnDefinition Width="Auto" />
                 <ColumnDefinition Width="*" />
-                <ColumnDefinition Width="*" />
                 <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
                 <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
             <Label Grid.Column="0">Rows:</Label>
@@ -33,11 +35,13 @@
             <Label Grid.Column="4">Default value:</Label>
             <TextBox Grid.Column="5" Text="{Binding DefaultCellValue}"></TextBox>
             <Button Grid.Column="6" Click="OnResizeButtonClick">Resize</Button>
-            <Label Grid.Column="7">File name:</Label>
-            <TextBox Grid.Column="8" Name="fileNameTextBox">output.txt</TextBox>
-            <Button Grid.Column="9" Click="OnExportButtonClick">Export</Button>
-            <Label Grid.Column="10">Color:</Label>
-            <xctk:ColorPicker Grid.Column="11" Name="cellColorPicker" SelectedColorChanged="CellColorPickerChanged"></xctk:ColorPicker>
+            <Label Grid.Column="7">Color:</Label>
+            <xctk:ColorPicker Grid.Column="8" Name="cellColorPicker" SelectedColorChanged="CellColorPickerChanged"></xctk:ColorPicker>
+            <Button Grid.Column="9">Delete all colors</Button>
+            <Label Grid.Column="10">File name:</Label>
+            <TextBox Grid.Column="11" Name="fileNameTextBox">output.txt</TextBox>
+            <Button Grid.Column="12" Click="OnExportButtonClick">Export</Button>
+            <Button Grid.Column="13">Import</Button>
         </Grid>
         <DataGrid Name="numberGrid" ItemsSource="{Binding MyList}"  
                   SelectionMode="Extended"

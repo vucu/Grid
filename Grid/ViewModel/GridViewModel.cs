@@ -12,21 +12,21 @@ namespace Grid
 {
     class GridViewModel
     {
-        private Model model;
+        private GridModel gridModel;
 
         public GridViewModel()
         {
-            model = new Model(2,2);
+            gridModel = new GridModel(2,2);
             MyList = new ObservableCollection<DataItem>();
         }
 
         public int DefaultCellValue {
             get {
-                return model.DefaultValue;
+                return gridModel.DefaultValue;
             }
             set
             {
-                model.DefaultValue = value;
+                gridModel.DefaultValue = value;
             }
         }
 
@@ -34,7 +34,7 @@ namespace Grid
         {
             get
             {
-                return model.RowCount;
+                return gridModel.RowCount;
             }
         }
 
@@ -42,7 +42,7 @@ namespace Grid
         {
             get
             {
-                return model.ColumnCount;
+                return gridModel.ColumnCount;
             }
         }
 
@@ -52,7 +52,7 @@ namespace Grid
         public void ResizeDataGrid(DataGrid grid, int rowsCount, int columnsCount)
         {
             // First resize the model
-            model.resize(rowsCount, columnsCount);
+            gridModel.resize(rowsCount, columnsCount);
 
             // Update the view model to match model size
             this.WriteViewModelToModel();
@@ -66,7 +66,7 @@ namespace Grid
             }
 
             // Then add the number of columns based on the model
-            for (int i = 0; i < model.ColumnCount; i++)
+            for (int i = 0; i < gridModel.ColumnCount; i++)
             {
                 DataGridTextColumn col = new DataGridTextColumn();
                 // col.Header = "" + i;
@@ -80,11 +80,11 @@ namespace Grid
         public void Clear()
         {
             // Clear the model with default values
-            for (int i=0;i<model.RowCount;i++)
+            for (int i=0;i<gridModel.RowCount;i++)
             {
-                for (int j=0;j<model.ColumnCount;j++)
+                for (int j=0;j<gridModel.ColumnCount;j++)
                 {
-                    model[i, j] = model.DefaultValue;
+                    gridModel[i, j] = gridModel.DefaultValue;
                 }
             }
 
@@ -97,18 +97,23 @@ namespace Grid
             WriteViewModelToModel();
 
             StringBuilder sb = new StringBuilder();
-            for (int i=0;i<this.model.RowCount;i++)
+            for (int i=0;i<this.gridModel.RowCount;i++)
             {
-                sb.Append(model[i, 1]);
-                for (int j=1;j<this.model.ColumnCount;j++)
+                sb.Append(gridModel[i, 1]);
+                for (int j=1;j<this.gridModel.ColumnCount;j++)
                 {
                     sb.Append(",");
-                    sb.Append(model[i, j]);
+                    sb.Append(gridModel[i, j]);
                 }
                 sb.Append("\r\n");
             }
 
             System.IO.File.WriteAllText(filename, sb.ToString());
+        }
+
+        public void LoadFromFile(string filename)
+        {
+
         }
 
         public void Put(int row, int column, int newValue)
@@ -133,13 +138,13 @@ namespace Grid
         
         private void WriteViewModelToModel()
         {
-            for (int i = 0; i < this.MyList.Count && i < model.RowCount; i++)
+            for (int i = 0; i < this.MyList.Count && i < gridModel.RowCount; i++)
             {
                 DataItem dataItem = this.MyList[i];
-                for (int j = 0; j < dataItem.DataList.Count && j < model.ColumnCount; j++)
+                for (int j = 0; j < dataItem.DataList.Count && j < gridModel.ColumnCount; j++)
                 {
                     int value = dataItem.DataList[j].MyValue;
-                    this.model[i, j] = value;
+                    this.gridModel[i, j] = value;
                 }
             }
         }
@@ -153,12 +158,12 @@ namespace Grid
             }
 
             // Then add the items to the view model based on the model
-            for (int i = 0; i < model.RowCount; i++)
+            for (int i = 0; i < gridModel.RowCount; i++)
             {
                 DataItem dataItem = new DataItem();
-                for (int j = 0; j < model.ColumnCount; j++)
+                for (int j = 0; j < gridModel.ColumnCount; j++)
                 {
-                    dataItem.DataList.Add(new DataListItem() { MyValue = this.model[i, j] });
+                    dataItem.DataList.Add(new DataListItem() { MyValue = this.gridModel[i, j] });
                 }
                 this.MyList.Add(dataItem);
             }
