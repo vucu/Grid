@@ -19,9 +19,9 @@ namespace Grid
         public static Color MakeStandardColor()
         {
             Color c = new Color();
-            c.R = 124;
-            c.G = 252;
-            c.B = 180;
+            c.R = 127;
+            c.G = 255;
+            c.B = 0;
             c.A = 255;
             return c;
         }

@@ -172,5 +172,10 @@ namespace Grid
             }
             
         }
+
+        private void OnDeleteAllColorsButtonClick(object sender, RoutedEventArgs e)
+        {
+            viewModel.DeleteAllColor();
+        }
     }
 }

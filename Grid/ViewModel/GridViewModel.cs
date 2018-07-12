@@ -63,9 +63,9 @@ namespace Grid
             Console.WriteLine("selected value: " + value);
             selectedValueString = value;
             Color c;
-            Color white = Color.FromRgb(255, 255, 255);
+            Color standard = ColorModel.MakeStandardColor();
 
-            if (!colorModel.Colors.TryGetValue(selectedValueString, out c)) currentColor = white;
+            if (!colorModel.Colors.TryGetValue(selectedValueString, out c)) currentColor = standard;
             else currentColor = c;
 
             // Notify change for CurrentColor
