@@ -31,6 +31,7 @@ namespace Grid
             this.DataContext = viewModel;
 
             this.OnResizeButtonClick(null, null);
+            this.UpdateColor();
         }
 
         private void OnResizeButtonClick(object sender, RoutedEventArgs e)

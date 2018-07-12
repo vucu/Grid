@@ -91,6 +91,9 @@ namespace Grid
 
                 // Update the view color
                 view.UpdateColor();
+
+                // Save to file
+                colorModel.SaveToFile();
             }
         }
         
@@ -126,6 +129,14 @@ namespace Grid
             }
         }
         
+        public void DeleteAllColor()
+        {
+            this.colorModel.DeleteAll();
+            this.colorModel.SaveToFile();
+
+            view.UpdateColor();
+        }
+
         public void ExportToFile(string filename)
         {
             // Commit all changes

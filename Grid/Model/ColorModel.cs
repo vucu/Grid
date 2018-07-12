@@ -22,6 +22,19 @@ namespace Grid
         private ColorModel()
         {
             Colors = new Dictionary<string, Color>();
+
+            // Load the color information from file
+            if (File.Exists(filename))
+            {
+                try
+                {
+                    this.LoadFromFile();
+                }
+                catch (IOException e)
+                {
+                    Console.WriteLine(e);
+                }
+            }
         }
 
         public Dictionary<string, Color> Colors { get; private set; }
