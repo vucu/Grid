@@ -27,7 +27,7 @@ namespace Grid
         public MainWindow()
         {
             InitializeComponent();
-            viewModel = new GridViewModel();
+            viewModel = new GridViewModel(this);
             this.DataContext = viewModel;
 
             this.OnResizeButtonClick(null, null);
@@ -39,7 +39,9 @@ namespace Grid
             int oldColumns = viewModel.ColumnCount;
             int r = int.TryParse(rowCountTextBox.Text, out r) ? r : oldRows;
             int c = int.TryParse(columnCountTextBox.Text, out c) ? c : oldColumns;
-            viewModel.ResizeDataGrid(numberGrid,r,c);    
+            viewModel.ResizeDataGrid(numberGrid,r,c);
+
+            UpdateColor();
         }
              
         private void OnExportButtonClick(object sender, RoutedEventArgs e)
@@ -66,7 +68,7 @@ namespace Grid
                 }
 
                 // Then update the color
-                // UpdateColor();
+                UpdateColor();
             }
         }
 
@@ -76,7 +78,7 @@ namespace Grid
             UpdateColor();
         }
 
-        private void UpdateColor()
+        public void UpdateColor()
         {
             // Iterate through all cells
             for (int i = 0; i < numberGrid.Items.Count; i++)

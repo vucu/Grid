@@ -38,7 +38,7 @@
             <TextBox Grid.Column="5" Text="{Binding DefaultCellValue}"></TextBox>
             <Button Grid.Column="6" Click="OnResizeButtonClick">Resize</Button>
             <Label Grid.Column="7">Color:</Label>
-            <xctk:ColorPicker Grid.Column="8" Name="cellColorPicker" SelectedColor="{Binding CurrentColor}" SelectedColorChanged="CellColorPickerChanged"></xctk:ColorPicker>
+            <xctk:ColorPicker Grid.Column="8" Name="cellColorPicker" SelectedColor="{Binding CurrentColor}"></xctk:ColorPicker>
             <Button Grid.Column="9">Delete all colors</Button>
             <Label Grid.Column="10">File name:</Label>
             <TextBox Grid.Column="11" Name="fileNameTextBox">output.txt</TextBox>

@@ -14,14 +14,17 @@ namespace Grid
 {
     class GridViewModel : NotifyPropertyChangedImpl
     {
-        private GridModel gridModel;
-        private ColorModel colorModel;
+        private readonly MainWindow view;
 
-        public GridViewModel()
+        private readonly GridModel gridModel;
+        private readonly ColorModel colorModel;
+
+        public GridViewModel(MainWindow view)
         {
             gridModel = GridModel.Instance;
             colorModel = ColorModel.Instance;
             MyList = new ObservableCollection<DataItem>();
+            this.view = view;
         }
 
         public string DefaultCellValue {
@@ -80,7 +83,12 @@ namespace Grid
                 {
                     colorModel.Colors[selectedValueString] = value;
                 }
+
+                // Notify change
                 OnPropertyChanged("CurrentColor");
+
+                // Update the view color
+                view.UpdateColor();
             }
         }
         
