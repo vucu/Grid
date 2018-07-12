@@ -48,6 +48,11 @@ namespace Grid
         {
             viewModel.ExportToFile(fileNameTextBox.Text);
         }
+
+        private void OnImportButtonClick(object sender, RoutedEventArgs e)
+        {
+            viewModel.LoadFromFile(fileNameTextBox.Text);
+        }
         
         // Change all selected cells
         public void CellEditingEnding(object sender, DataGridCellEditEndingEventArgs e)

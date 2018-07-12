@@ -3,9 +3,11 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Data;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows.Media;
@@ -126,12 +128,27 @@ namespace Grid
         
         public void ExportToFile(string filename)
         {
+            // Commit all changes
+            this.WriteViewModelToModel();
+
+            // Then export to files
             this.gridModel.ExportToFile(filename);
         }
 
         public void LoadFromFile(string filename)
         {
+            if (File.Exists(filename))
+            {
+                // Import from file
+                gridModel.ImportFromFile(filename);
 
+                // Then load the changes
+                this.LoadModelToViewModel();
+            }
+            else
+            {
+                MessageBox.Show("File " + filename + " does not exists","Error");
+            }
         }
 
         public void Put(int row, int column, string newValue)
