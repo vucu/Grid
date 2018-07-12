@@ -52,6 +52,7 @@ namespace Grid
         {
             if (e.EditAction == DataGridEditAction.Commit)
             {
+                // Modify all selected values
                 var tb = e.EditingElement as TextBox;
                 string value = tb.Text;
 
@@ -62,13 +63,42 @@ namespace Grid
                     int row = numberGrid.Items.IndexOf(cellInfo.Item);
                     int column = cellInfo.Column.DisplayIndex;
                     viewModel.Put(row, column, value);
-;                }
+                }
+
+                // Then update the color
+                // UpdateColor();
             }
         }
 
         private void CellColorPickerChanged(object sender, RoutedEventArgs e)
         {
-            // 
+            viewModel.CurrentColor = cellColorPicker.SelectedColor ?? new Color();
+            UpdateColor();
+        }
+
+        private void UpdateColor()
+        {
+            // Iterate through all cells
+            for (int i = 0; i < numberGrid.Items.Count; i++)
+            {
+                for (int j = 0; j < numberGrid.Columns.Count; j++)
+                {
+                    // Get the visual cell
+                    DataGridCell cell = ViewLibrary.GetCell(numberGrid, i, j);
+
+                    // Get the cell content
+                    string value = viewModel.Get(i, j);
+
+                    // Update the color
+                    ColorModelAccessor accessor = new ColorModelAccessor();
+                    Color c;
+                    bool success = accessor.ColorModel.Colors.TryGetValue(value, out c);
+                    if (success)
+                    {
+                        cell.Background = new SolidColorBrush(c);
+                    }
+                }
+            }
         }
 
         private void OnSelectionChanged(object sender, SelectedCellsChangedEventArgs e)
