@@ -10,9 +10,16 @@ namespace Grid
 {
     class ColorModel
     {
+        // *** Singleton *** 
+        private static readonly Lazy<ColorModel> lazy =
+        new Lazy<ColorModel>(() => new ColorModel());
+
+        public static ColorModel Instance { get { return lazy.Value; } }
+
+
         private readonly string filename = "color.txt";
 
-        public ColorModel()
+        private ColorModel()
         {
             Colors = new Dictionary<string, Color>();
         }

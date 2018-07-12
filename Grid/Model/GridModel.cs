@@ -10,12 +10,24 @@ namespace Grid
 {
     class GridModel
     {
+        // *** Singleton *** 
+        private static readonly Lazy<GridModel> lazy =
+        new Lazy<GridModel>(() => new GridModel());
+
+        public static GridModel Instance { get { return lazy.Value; } }
+
+
         AlphaNumeric[,] data;
         private int rowCount;
         private int columnCount;
         private AlphaNumeric defaultValue;
 
-        public GridModel(int rowCount, int columnCount)
+        private GridModel() : this(1,1)
+        {
+
+        }
+
+        private GridModel(int rowCount, int columnCount)
         {
             this.rowCount = rowCount;
             this.columnCount = columnCount;

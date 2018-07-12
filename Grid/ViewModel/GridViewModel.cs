@@ -19,8 +19,8 @@ namespace Grid
 
         public GridViewModel()
         {
-            gridModel = new GridModel(2,2);
-            colorModel = new ColorModel();
+            gridModel = GridModel.Instance;
+            colorModel = ColorModel.Instance;
             MyList = new ObservableCollection<DataItem>();
         }
 
@@ -109,7 +109,6 @@ namespace Grid
             for (int i = 0; i < gridModel.ColumnCount; i++)
             {
                 DataGridTextColumn col = new DataGridTextColumn();
-                // col.Header = "" + i;
                 Binding binding = new Binding(string.Format("DataList[{0}].Content", i));
                 binding.Mode = BindingMode.TwoWay;
                 col.Binding = binding;

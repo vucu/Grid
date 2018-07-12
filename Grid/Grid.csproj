@@ -111,9 +111,11 @@
     <Compile Include="Model\AlphaNumeric.cs" />
     <Compile Include="Model\ColorModel.cs" />
     <Compile Include="Model\GridModel.cs" />
+    <Compile Include="ViewModel\ColorModelAccessor.cs" />
     <Compile Include="ViewModel\DataItem.cs" />
     <Compile Include="ViewModel\NotifyPropertyChangedImpl.cs" />
     <Compile Include="ViewModel\GridViewModel.cs" />
+    <Compile Include="ViewModel\ValueToBrushConverter.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>

@@ -7,7 +7,9 @@
         xmlns:local="clr-namespace:Grid"
         mc:Ignorable="d"
         Title="Grid" Height="500" Width="800">
+    
     <DockPanel>
+      
         <Grid DockPanel.Dock="Top">
             <Grid.RowDefinitions>
                 <RowDefinition Height="*" />
@@ -43,9 +45,16 @@
             <Button Grid.Column="12" Click="OnExportButtonClick">Export</Button>
             <Button Grid.Column="13">Import</Button>
         </Grid>
-        <DataGrid Name="numberGrid" ItemsSource="{Binding MyList}" 
-                  SelectedItem="{Binding SelectedItem,Mode=OneWayToSource,UpdateSourceTrigger=PropertyChanged}"
+        <UserControl>
+            <UserControl.Resources>
+                <local:ValueToBrushConverter x:Key="ValueToBrushConverter"/>
+                <Style x:Key="CellStyle" TargetType="DataGridCell">
+                    <Setter Property="Background" Value="{Binding RelativeSource={RelativeSource Self}, Converter={StaticResource ValueToBrushConverter}}" />
+                </Style>
+            </UserControl.Resources>
+            <DataGrid Name="numberGrid" ItemsSource="{Binding MyList}" 
                   SelectedCellsChanged="OnSelectionChanged"
+                  CellStyle="{StaticResource CellStyle}"
                   SelectionMode="Extended"
                   SelectionUnit="Cell"
                   CellEditEnding="CellEditingEnding"
@@ -54,6 +63,7 @@
                   CanUserAddRows="False"
                   CanUserDeleteRows="False"
                   CanUserSortColumns="False">
-        </DataGrid>
+            </DataGrid>
+        </UserControl>
     </DockPanel>
 </Window>
