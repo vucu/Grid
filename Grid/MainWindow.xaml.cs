@@ -105,6 +105,10 @@ namespace Grid
                     {
                         cell.Background = new SolidColorBrush(c);
                     }
+                    else
+                    {
+                        cell.Background = new SolidColorBrush(ColorModel.MakeStandardColor());
+                    }
                 }
             }
         }

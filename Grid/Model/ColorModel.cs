@@ -16,6 +16,16 @@ namespace Grid
 
         public static ColorModel Instance { get { return lazy.Value; } }
 
+        // *** Static method ***
+        public static Color MakeStandardColor()
+        {
+            Color c = new Color();
+            c.R = 124;
+            c.G = 252;
+            c.B = 180;
+            c.A = 255;
+            return c;
+        }
 
         private readonly string filename = "color.txt";
 
