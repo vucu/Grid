@@ -6,3 +6,7 @@ This is its purpose:
 It will just export a plain text file, with numbering, comma separated, so anything
 can read it
 
+How to use
+====
+Simply download the Application folder, and run Grid.exe
+
