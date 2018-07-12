@@ -6,8 +6,8 @@
         xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
         xmlns:local="clr-namespace:Grid"
         mc:Ignorable="d"
-        Title="Grid" Height="500" Width="800">
-    
+        Title="Grid" Height="500" Width="800"
+        Loaded="UpdateColor">
     <DockPanel>
       
         <Grid DockPanel.Dock="Top">
@@ -48,6 +48,7 @@
         <UserControl>
             <DataGrid Name="numberGrid" ItemsSource="{Binding MyList}" 
                   SelectedCellsChanged="OnSelectionChanged"
+                  Loaded="UpdateColor"
                   SelectionMode="Extended"
                   SelectionUnit="Cell"
                   CellEditEnding="CellEditingEnding"

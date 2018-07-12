@@ -11,10 +11,9 @@ namespace Grid
     class ColorModel
     {
         // *** Singleton *** 
-        private static readonly Lazy<ColorModel> lazy =
-        new Lazy<ColorModel>(() => new ColorModel());
+        private static readonly ColorModel instance = new ColorModel();
 
-        public static ColorModel Instance { get { return lazy.Value; } }
+        public static ColorModel Instance { get { return instance; } }
 
         // *** Static method ***
         public static Color MakeStandardColor()

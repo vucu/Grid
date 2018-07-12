@@ -31,6 +31,10 @@ namespace Grid
             this.DataContext = viewModel;
 
             this.OnResizeButtonClick(null, null);
+        }
+
+        private void UpdateColor(object sender, RoutedEventArgs e)
+        {
             this.UpdateColor();
         }
 
@@ -53,6 +57,8 @@ namespace Grid
         private void OnImportButtonClick(object sender, RoutedEventArgs e)
         {
             viewModel.LoadFromFile(fileNameTextBox.Text);
+
+            UpdateColor();
         }
         
         // Change all selected cells
@@ -93,6 +99,11 @@ namespace Grid
                 {
                     // Get the visual cell
                     DataGridCell cell = ViewLibrary.GetCell(numberGrid, i, j);
+                    if (cell==null)
+                    {
+                        Console.WriteLine("Beware! Cell is null");
+                        continue;
+                    }
 
                     // Get the cell content
                     string value = viewModel.Get(i, j);

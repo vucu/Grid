@@ -11,10 +11,10 @@ namespace Grid
     class GridModel
     {
         // *** Singleton *** 
-        private static readonly Lazy<GridModel> lazy =
-        new Lazy<GridModel>(() => new GridModel());
+        private static readonly GridModel instance = new GridModel();
 
-        public static GridModel Instance { get { return lazy.Value; } }
+
+        public static GridModel Instance { get { return instance; } }
 
 
         AlphaNumeric[,] data;
