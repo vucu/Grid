@@ -55,6 +55,30 @@ namespace Grid
             }
         }
 
+        private bool fileAvalable = false;
+        public bool FileAvailable {
+            get
+            {
+                return fileAvalable;
+            }
+            set
+            {
+                fileAvalable = value;
+                OnPropertyChanged("FileAvalable");
+            }
+        }
+        private string fileName;
+        public string FileName {
+            get
+            {
+                return fileName;
+            }
+            set
+            {
+                fileName = value;
+                OnPropertyChanged("FileName");
+            }
+        }
         
         private string selectedValueString = null;
         private Color currentColor;

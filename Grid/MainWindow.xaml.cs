@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.Win32;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Data;
@@ -48,17 +49,66 @@ namespace Grid
 
             UpdateColor();
         }
-             
-        private void OnExportButtonClick(object sender, RoutedEventArgs e)
+     
+        private void OnSaveAsButtonClick(object sender, RoutedEventArgs e)
         {
-            viewModel.ExportToFile(fileNameTextBox.Text);
+            SaveFileDialog dlg = new SaveFileDialog();
+
+            // Reset the default directory
+            if (!string.IsNullOrEmpty(viewModel.FileName))
+            {
+                dlg.InitialDirectory = System.IO.Path.GetDirectoryName(viewModel.FileName);
+            }
+
+            dlg.FileName = "output"; // Default file name
+            dlg.DefaultExt = ".txt"; // Default file extension
+            dlg.Filter = "Text documents (.txt)|*.txt|All files|*.*"; // Filter files by extension
+
+            // Show save file dialog box
+            Nullable<bool> result = dlg.ShowDialog();
+
+            // Process save file dialog box results
+            if (result == true)
+            {
+                // Save document
+                viewModel.FileName = dlg.FileName;
+                viewModel.ExportToFile(dlg.FileName);
+                viewModel.FileAvailable = true;
+            }
+        }
+
+        private void OnSaveButtonClick(object sender, RoutedEventArgs e)
+        {
+            viewModel.ExportToFile(viewModel.FileName);
         }
 
         private void OnImportButtonClick(object sender, RoutedEventArgs e)
         {
-            viewModel.LoadFromFile(fileNameTextBox.Text);
+            OpenFileDialog dlg = new OpenFileDialog();
 
-            UpdateColor();
+            // Reset the default directory
+            if (!string.IsNullOrEmpty(viewModel.FileName))
+            {
+                dlg.InitialDirectory = System.IO.Path.GetDirectoryName(viewModel.FileName);
+            }
+
+            dlg.FileName = "output"; // Default file name
+            dlg.DefaultExt = ".txt"; // Default file extension
+            dlg.Filter = "Text documents (.txt)|*.txt|All files|*.*"; // Filter files by extension
+
+            // Show save file dialog box
+            Nullable<bool> result = dlg.ShowDialog();
+
+            // Process save file dialog box results
+            if (result == true)
+            {
+                // Load document
+                viewModel.FileName = dlg.FileName;
+                viewModel.LoadFromFile(dlg.FileName);
+                viewModel.FileAvailable = true;
+ 
+                UpdateColor();
+            }
         }
         
         // Change all selected cells

@@ -26,9 +26,9 @@
                 <ColumnDefinition Width="*" />
                 <ColumnDefinition Width="Auto" />
                 <ColumnDefinition Width="Auto" />
-                <ColumnDefinition Width="3*" />
-                <ColumnDefinition Width="*" />
-                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="Auto" />
             </Grid.ColumnDefinitions>
             <Label Grid.Column="0">Rows:</Label>
             <TextBox Grid.Column="1" Name="rowCountTextBox">10</TextBox>
@@ -40,9 +40,9 @@
             <Label Grid.Column="7">Color:</Label>
             <xctk:ColorPicker Grid.Column="8" Name="cellColorPicker" SelectedColor="{Binding CurrentColor}"></xctk:ColorPicker>
             <Button Grid.Column="9" Click="OnDeleteAllColorsButtonClick">Delete all colors</Button>
-            <Label Grid.Column="10">File name:</Label>
-            <TextBox Grid.Column="11" Name="fileNameTextBox">output.txt</TextBox>
-            <Button Grid.Column="12" Click="OnExportButtonClick">Export</Button>
+            <Label Grid.Column="10">File:</Label>
+            <Button Grid.Column="11" Click="OnSaveAsButtonClick">Save as ...</Button>
+            <Button Grid.Column="12" Click="OnSaveButtonClick">Save</Button>
             <Button Grid.Column="13" Click="OnImportButtonClick">Import</Button>
         </Grid>
         <UserControl>
