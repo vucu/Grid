@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <asmv1:assembly xsi:schemaLocation="urn:schemas-microsoft-com:asm.v1 assembly.adaptive.xsd" manifestVersion="1.0" xmlns:asmv1="urn:schemas-microsoft-com:asm.v1" xmlns="urn:schemas-microsoft-com:asm.v2" xmlns:asmv2="urn:schemas-microsoft-com:asm.v2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:co.v1="urn:schemas-microsoft-com:clickonce.v1" xmlns:asmv3="urn:schemas-microsoft-com:asm.v3" xmlns:dsig="http://www.w3.org/2000/09/xmldsig#" xmlns:co.v2="urn:schemas-microsoft-com:clickonce.v2">
-  <asmv1:assemblyIdentity name="Grid.exe" version="1.0.0.2" publicKeyToken="0000000000000000" language="neutral" processorArchitecture="msil" type="win32" />
+  <asmv1:assemblyIdentity name="Grid.exe" version="1.0.0.1" publicKeyToken="ec7616e0da65be66" language="neutral" processorArchitecture="msil" type="win32" />
   <application />
   <entryPoint>
     <assemblyIdentity name="Grid" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
@@ -42,14 +42,14 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="Grid.exe" size="22968">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="Grid.exe" size="28088">
       <assemblyIdentity name="Grid" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>o6HEqHXC3Mn8DFn4cTsmNOirn/9w6C9VE5aR3ZxY0j0=</dsig:DigestValue>
+        <dsig:DigestValue>4UNh8so/IRPhN12bjNpa7EthdONhnfig4aqbWyYU9Cs=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
@@ -254,4 +254,4 @@
       <dsig:DigestValue>6N7MliNbVJSIAIPrecIshMbZ7zEoKLr5SQvud4LDUOw=</dsig:DigestValue>
     </hash>
   </file>
-</asmv1:assembly>
+<publisherIdentity name="CN=AM-OMRON\vu.cu" issuerKeyHash="52ee60258a65909b37295666d557c667387a1d81" /><Signature Id="StrongNameSignature" xmlns="http://www.w3.org/2000/09/xmldsig#"><SignedInfo><CanonicalizationMethod Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#" /><SignatureMethod Algorithm="http://www.w3.org/2000/09/xmldsig#rsa-sha256" /><Reference URI=""><Transforms><Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature" /><Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#" /></Transforms><DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" /><DigestValue>oCL7O7pJvCVCJaqjHYZXlOc5v82V3bfC+di4hvQSmXk=</DigestValue></Reference></SignedInfo><SignatureValue>JBDRIn+Y/jLJLbPrzo3/fly1E+t2E6Y91GDlg/05p/M5LQjto9UwQUNCs9ploFMa35TdL/xae6pY8NLyMNfXKjaf5awcZDN57HZAQodxRIGLGSGe/DsTdzT5EwvCWryUWtq0N0hzsL3NhgVeee5J2ZYyyA6LWjz3WK2z0sEzk3U=</SignatureValue><KeyInfo Id="StrongNameKeyInfo"><KeyValue><RSAKeyValue><Modulus>v8HbMWNQFcu0gC09oCRtV193SkPYNwHX/KaLmBQl2jL0KGvL1EpIPjqme5V+Ywkd00aKVryjaehWlKP0iadW2iIi6jGQHlrYB+i1DATT1b48yyYaXvSmAqgsPlY4MLUMpG3cRfCEjZRKFhUFR/tiNBk80o+N1qD8viXmpch9WNU=</Modulus><Exponent>AQAB</Exponent></RSAKeyValue></KeyValue><msrel:RelData xmlns:msrel="http://schemas.microsoft.com/windows/rel/2005/reldata"><r:license xmlns:r="urn:mpeg:mpeg21:2003:01-REL-R-NS" xmlns:as="http://schemas.microsoft.com/windows/pki/2005/Authenticode"><r:grant><as:ManifestInformation Hash="799912f486b8d8f9c2b7dd95cdbf39e79457861da3aa254225bc49ba3bfb22a0" Description="" Url=""><as:assemblyIdentity name="Grid.exe" version="1.0.0.1" publicKeyToken="ec7616e0da65be66" language="neutral" processorArchitecture="msil" type="win32" /></as:ManifestInformation><as:SignedBy /><as:AuthenticodePublisher><as:X509SubjectName>CN=AM-OMRON\vu.cu</as:X509SubjectName></as:AuthenticodePublisher></r:grant><r:issuer><Signature Id="AuthenticodeSignature" xmlns="http://www.w3.org/2000/09/xmldsig#"><SignedInfo><CanonicalizationMethod Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#" /><SignatureMethod Algorithm="http://www.w3.org/2000/09/xmldsig#rsa-sha256" /><Reference URI=""><Transforms><Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature" /><Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#" /></Transforms><DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" /><DigestValue>J6f7R6GEbETwmUDeAFCrQ9+/J8QJL36JAc5ZhgA3Z7w=</DigestValue></Reference></SignedInfo><SignatureValue>ccIjLD1HWr1NUuIN0mX4HMD4OVGrY2nEbujnlTv4ezEGnZ+XQew9QMvqmVTdPcjzuhV63UQvKdwCopQLmUx+sTAl+RP6EA2e9vV9KEH2oAIeuEfQY+7NqvQkAqeP3M/2y3j0cw+7qdtS3brUug0+vMuVs8cG3QZ1gUHqDUXmzx8=</SignatureValue><KeyInfo><KeyValue><RSAKeyValue><Modulus>v8HbMWNQFcu0gC09oCRtV193SkPYNwHX/KaLmBQl2jL0KGvL1EpIPjqme5V+Ywkd00aKVryjaehWlKP0iadW2iIi6jGQHlrYB+i1DATT1b48yyYaXvSmAqgsPlY4MLUMpG3cRfCEjZRKFhUFR/tiNBk80o+N1qD8viXmpch9WNU=</Modulus><Exponent>AQAB</Exponent></RSAKeyValue></KeyValue><X509Data><X509Certificate>MIIB0TCCATqgAwIBAgIQWB5GfwXEqoJOg5A5dU9OEDANBgkqhkiG9w0BAQsFADAnMSUwIwYDVQQDHhwAQQBNAC0ATwBNAFIATwBOAFwAdgB1AC4AYwB1MB4XDTE4MDcxMTAwMjI1OVoXDTE5MDcxMTA2MjI1OVowJzElMCMGA1UEAx4cAEEATQAtAE8ATQBSAE8ATgBcAHYAdQAuAGMAdTCBnzANBgkqhkiG9w0BAQEFAAOBjQAwgYkCgYEAv8HbMWNQFcu0gC09oCRtV193SkPYNwHX/KaLmBQl2jL0KGvL1EpIPjqme5V+Ywkd00aKVryjaehWlKP0iadW2iIi6jGQHlrYB+i1DATT1b48yyYaXvSmAqgsPlY4MLUMpG3cRfCEjZRKFhUFR/tiNBk80o+N1qD8viXmpch9WNUCAwEAATANBgkqhkiG9w0BAQsFAAOBgQA91Mj7VNfflg2zQJl9TDR2zio1icLxosPhJjwdnMqIDtIo1cAcI/Hk6/0InCWBvHKoXT8D+YCCWEAZta6JAJS3TgmtCTt1KpOczRhHs5LtCM62jmK7Bk39+pTqUdFErWfwEJmEE/UZp+0jGVFaxaumN7/s3nUxOHTEN7K1bvgseA==</X509Certificate></X509Data></KeyInfo></Signature></r:issuer></r:license></msrel:RelData></KeyInfo></Signature></asmv1:assembly>

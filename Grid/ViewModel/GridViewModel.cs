@@ -24,6 +24,8 @@ namespace Grid
         public GridViewModel(MainWindow view)
         {
             gridModel = GridModel.Instance;
+            gridModel.resize(10, 10);
+
             colorModel = ColorModel.Instance;
             MyList = new ObservableCollection<DataItem>();
             this.view = view;
@@ -151,6 +153,10 @@ namespace Grid
                 col.Binding = binding;
                 grid.Columns.Add(col);
             }
+
+            // Notify change
+            OnPropertyChanged("RowCount");
+            OnPropertyChanged("ColumnCount");
         }
         
         public void DeleteAllColor()
@@ -179,6 +185,9 @@ namespace Grid
 
                 // Then load the changes
                 this.LoadModelToViewModel();
+
+                // Resize
+                this.ResizeDataGrid(view.numberGrid, this.RowCount, this.ColumnCount);
             }
             else
             {

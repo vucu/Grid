@@ -31,9 +31,9 @@
                 <ColumnDefinition Width="Auto" />
             </Grid.ColumnDefinitions>
             <Label Grid.Column="0">Rows:</Label>
-            <TextBox Grid.Column="1" Name="rowCountTextBox">10</TextBox>
+            <TextBox Grid.Column="1" Text="{Binding RowCount, Mode=OneWay}"  Name="rowCountTextBox"></TextBox>
             <Label Grid.Column="2">Columns:</Label>
-            <TextBox Grid.Column="3" Name="columnCountTextBox">10</TextBox>
+            <TextBox Grid.Column="3" Text="{Binding ColumnCount, Mode=OneWay}" Name="columnCountTextBox"></TextBox>
             <Label Grid.Column="4">Default value:</Label>
             <TextBox Grid.Column="5" Text="{Binding DefaultCellValue}"></TextBox>
             <Button Grid.Column="6" Click="OnResizeButtonClick">Resize</Button>
